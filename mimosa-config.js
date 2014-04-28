@@ -15,6 +15,7 @@ exports.config = {
     "web-package"
   ],
   "server": {
+    "port": 8000,
     "views": {
       "compileWith": "ejs",
       "extension": "ejs"

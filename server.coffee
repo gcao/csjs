@@ -1,6 +1,9 @@
 express = require 'express'
 engines = require 'consolidate'
 routes  = require './routes'
+util    = require 'util'
+
+formidable = require 'formidable'
 
 exports.startServer = (config, callback) ->
 
@@ -28,5 +31,12 @@ exports.startServer = (config, callback) ->
 
   app.get '/', routes.index(config)
 
+  app.post '/cs2js', (req, res) ->
+    form = new formidable.IncomingForm();
+    form.parse req, (err, fields, files) ->
+      res.writeHead(200, 'content-type': 'text/plain')
+      res.write('received upload:\n\n')
+      res.end(util.inspect(fields: fields, files: files))
+    
   callback(server)
 
