@@ -36,16 +36,20 @@ exports.startServer = (config, callback) ->
   #app.post '/cs2js', routes.cs2js(config)
   app.post '/cs2js', (req, res) ->
     form = new formidable.IncomingForm()
-    try
-      form.parse req, (err, fields, files) ->
+    form.parse req, (err, fields, files) ->
+      if files.file
         fs.readFile files.file.path, 'utf8', (err, data) ->
-          output = coffee.compile data
-          res.writeHead(200, 'content-type': 'text/plain')
-          res.end output
-    catch ex
-      res.writeHead(500, 'content-type': 'text/plain')
-      res.end util.inspect ex
+          try
+            output = coffee.compile data
+            res.writeHead(200, 'content-type': 'text/plain')
+            res.end output
+          catch ex
+            res.writeHead(500, 'content-type': 'text/plain')
+            res.end util.inspect ex
 
+      else
+        res.writeHead(200, 'content-type': 'text/plain')
+        res.end '/* No CoffeeScript code is passed in. */'
 
   callback(server)
 
