@@ -15,3 +15,5 @@ index = (config) ->
   (req, res) -> res.render name, options
 
 exports.index = index
+exports.cs2js = require('./cs2js').cs2js
+
