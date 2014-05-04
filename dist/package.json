@@ -5,8 +5,9 @@
   "dependencies": {
     "consolidate": "0.10.0",
     "ejs": "0.8.5",
-    "coffee-script": "1.6.3",
-    "express": "3.4.7"
+    "coffee-script": "1.7.1",
+    "express": "3.4.7",
+    "formidable": "1.0.14"
   },
   "devDependencies": {
     "mimosa-coffeescript": "*",

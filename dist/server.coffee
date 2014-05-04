@@ -26,7 +26,8 @@ exports.startServer = (config, callback) ->
   app.configure 'development', ->
     app.use express.errorHandler()
 
-  app.get '/', routes.index(config)
+  app.get '/'      , routes.index(config)
+  app.post '/cs2js', routes.cs2js(config)
 
   callback(server)
 
