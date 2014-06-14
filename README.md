@@ -18,7 +18,7 @@ To start the local server:
 mimosa watch -s
 
 To rebuild the distribution:  
-mimosa clean && mimosa build
+mimosa clean && mimosa build -omp
 
 open http://localhost:8000
 
